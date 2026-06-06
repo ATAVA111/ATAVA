@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Book Cover Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="main-container no-print">
+        <h1>📚 Book Cover Generator</h1>
+        <p>വിവരങ്ങൾ നൽകി പ്രൊഫഷണൽ കവർ പേജ് ഉണ്ടാക്കൂ!</p>
+        
+        <div class="form-container">
+            <div class="input-group">
+                <label>Student Photo:</label>
+                <input type="file" id="inputPhoto" accept="image/*" onchange="loadPhoto(event)">
+            </div>
+            <div class="input-group">
+                <label>Student Name:</label>
+                <input type="text" id="inputName" placeholder="MUHAMMED ZIYAD KV" oninput="updateCover()">
+            </div>
+            <div class="input-group">
+                <label>Class:</label>
+                <input type="text" id="inputClass" placeholder="Class: 4 A" oninput="updateCover()">
+            </div>
+            <div class="input-group">
+                <label>Roll No:</label>
+                <input type="text" id="inputRoll" placeholder="Roll: 10" oninput="updateCover()">
+            </div>
+            <div class="input-group">
+                <label>Subject:</label>
+                <input type="text" id="inputSubject" placeholder="MATHEMATICS" oninput="updateCover()">
+            </div>
+            <div class="input-group">
+                <label>School:</label>
+                <input type="text" id="inputSchool" placeholder="JALALIYYA SCHOOL" oninput="updateCover()">
+            </div>
+            
+            <button class="print-btn" onclick="window.print()">🖨️ Download / Print Cover</button>
+        </div>
+    </div>
+
+    <div class="cover-preview-area">
+        <div class="book-cover" id="bookCover">
+            <div class="cover-overlay">
+                
+                <div class="top-section">
+                    <div class="photo-box">
+                        <img id="avatar" src="https://via.placeholder.com/150" alt="Student Photo">
+                    </div>
+                    <div class="student-info">
+                        <h2 id="coverName">MUHAMMED ZIYAD KV</h2>
+                        <p><span id="coverClass">Class: 4 A</span> | <span id="coverRoll">Roll: 10</span></p>
+                    </div>
+                </div>
+
+                <div class="subject-section">
+                    <div class="sub-title">
+                        <span class="icon">📐</span>
+                        <h3 id="coverSubject">MATHEMATICS</h3>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <hr class="line">
+                    <h4 id="coverSchool">JALALIYYA SCHOOL</h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCover() {
+            document.getElementById('coverName').innerText = document.getElementById('inputName').value || "MUHAMMED ZIYAD KV";
+            document.getElementById('coverClass').innerText = document.getElementById('inputClass').value ? "Class: " + document.getElementById('inputClass').value : "Class: 4 A";
+            document.getElementById('coverRoll').innerText = document.getElementById('inputRoll').value ? "Roll: " + document.getElementById('inputRoll').value : "Roll: 10";
+            document.getElementById('coverSubject').innerText = document.getElementById('inputSubject').value.toUpperCase() || "MATHEMATICS";
+            document.getElementById('coverSchool').innerText = document.getElementById('inputSchool').value.toUpperCase() || "JALALIYYA SCHOOL";
+        }
+
+        // ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുമ്പോൾ കവറിൽ വരാൻ
+        function loadPhoto(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('avatar');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
+p { color: #666; margin-top: 0; font-size: 14px; }
+
+.form-container { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+.input-group { display: flex; align-items: center; text-align: left; }
+.input-group label { width: 120px; font-weight: 600; color: #444; font-size: 14px; }
+.input-group input { flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; outline: none; }
+
+.print-btn {
+    background-color: #5d6bca;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 🖼️ കവർ ഡിസൈൻ സെക്ഷൻ (നിങ്ങൾ തന്ന ചിത്രത്തിന്റെ അതേ രൂപത്തിൽ) */
+.book-cover {
+    width: 800px;
+    height: 420px;
+    /* ഫോറസ്റ്റിന്റെ ബാക്ക്ഗ്രൗണ്ട് ചിത്രം ഇവിടെ സെറ്റ് ചെയ്യാം */
+    background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ചിത്രത്തിന് മുകളിലുള്ള ഇരുണ്ട ഓവർലേ (Dark Overlay) */
+.cover-overlay {
+    background: rgba(27, 16, 41, 0.75); /* ഫോട്ടോയിൽ കാണുന്ന പോലെയുള്ള ഡാർക്ക് പർപ്പിൾ/ബ്ലാക്ക് ഷേഡ് */
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* മുകൾഭാഗം: ഫോട്ടോയും വിവരങ്ങളും */
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photo-box img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.student-info {
+    text-align: right;
+    color: white;
+}
+
+.student-info h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.student-info p {
+    margin: 3px 0 0 0;
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* നടുഭാഗം: വലിയ അക്ഷരത്തിലുള്ള വിഷയം (Mathematics) */
+.subject-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.sub-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sub-title .icon {
+    font-size: 32px;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.sub-title h3 {
+    margin: 0;
+    color: white;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* താഴെഭാഗം: സ്കൂൾ പേര് */
+.footer-section {
+    text-align: center;
+    color: white;
+}
+
+.line {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+}
+
+.footer-section h4 {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #dfdfdf;
+}
+
+/* ಪ್ರಿಂಟ್ ചെയ്യുമ്പോൾ ഉള്ള ക്രമീകരണം */
+@media print {
+    body { background: white; padding: 0; }
+    .no-print { display: none !important; }
+    .book-cover {
+        box-shadow: none;
+        margin: 0;
+        position: absolute;
+        top: 0; left: 0;
+        -webkit-print-color-adjust: exact; /* ബാക്ക്ഗ്രൗണ്ട് ചിത്രം പ്രിന്റിൽ വരാൻ */
+        print-color-adjust: exact;
+    }
+}
