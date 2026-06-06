@@ -1,96 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Book Cover Generator</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div class="main-container no-print">
-        <h1>📚 Book Cover Generator</h1>
-        <p>വിവരങ്ങൾ നൽകി പ്രൊഫഷണൽ കവർ പേജ് ഉണ്ടാക്കൂ!</p>
-        
-        <div class="form-container">
-            <div class="input-group">
-                <label>Student Photo:</label>
-                <input type="file" id="inputPhoto" accept="image/*" onchange="loadPhoto(event)">
-            </div>
-            <div class="input-group">
-                <label>Student Name:</label>
-                <input type="text" id="inputName" placeholder="MUHAMMED ZIYAD KV" oninput="updateCover()">
-            </div>
-            <div class="input-group">
-                <label>Class:</label>
-                <input type="text" id="inputClass" placeholder="Class: 4 A" oninput="updateCover()">
-            </div>
-            <div class="input-group">
-                <label>Roll No:</label>
-                <input type="text" id="inputRoll" placeholder="Roll: 10" oninput="updateCover()">
-            </div>
-            <div class="input-group">
-                <label>Subject:</label>
-                <input type="text" id="inputSubject" placeholder="MATHEMATICS" oninput="updateCover()">
-            </div>
-            <div class="input-group">
-                <label>School:</label>
-                <input type="text" id="inputSchool" placeholder="JALALIYYA SCHOOL" oninput="updateCover()">
-            </div>
-            
-            <button class="print-btn" onclick="window.print()">🖨️ Download / Print Cover</button>
+<!-- Design & Aesthetics Section -->
+<div class="design-section">
+    <h3>🎨 Design & Aesthetics</h3>
+    <hr class="section-divider">
+    
+    <div class="design-grid">
+        <!-- Theme Style Dropdown -->
+        <div class="input-group">
+            <label for="themeStyle">Theme Style</label>
+            <select id="themeStyle" onchange="changeTheme()">
+                <option value="default">Default (Minimal White)</option>
+                <option value="nature">Nature & Landscapes (Light Green)</option>
+                <option value="ocean">Ocean Blue (Calm Blue)</option>
+                <option value="sunset">Warm Sunset (Soft Orange)</option>
+                <option value="dark">Tech Dark (Modern Dark)</option>
+            </select>
         </div>
-    </div>
 
-    <div class="cover-preview-area">
-        <div class="book-cover" id="bookCover">
-            <div class="cover-overlay">
-                
-                <div class="top-section">
-                    <div class="photo-box">
-                        <img id="avatar" src="https://via.placeholder.com/150" alt="Student Photo">
-                    </div>
-                    <div class="student-info">
-                        <h2 id="coverName">MUHAMMED ZIYAD KV</h2>
-                        <p><span id="coverClass">Class: 4 A</span> | <span id="coverRoll">Roll: 10</span></p>
-                    </div>
-                </div>
-
-                <div class="subject-section">
-                    <div class="sub-title">
-                        <span class="icon">📐</span>
-                        <h3 id="coverSubject">MATHEMATICS</h3>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <hr class="line">
-                    <h4 id="coverSchool">JALALIYYA SCHOOL</h4>
-                </div>
-
+        <!-- Student Photo Upload (Optional) -->
+        <div class="input-group">
+            <label>Student Photo (Optional)</label>
+            <div class="file-upload-box">
+                <input type="file" id="studentPhoto" accept="image/*" onchange="handlePhotoUpload(event)">
+                <span id="fileName">📁 Upload Photo</span>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        function updateCover() {
-            document.getElementById('coverName').innerText = document.getElementById('inputName').value || "MUHAMMED ZIYAD KV";
-            document.getElementById('coverClass').innerText = document.getElementById('inputClass').value ? "Class: " + document.getElementById('inputClass').value : "Class: 4 A";
-            document.getElementById('coverRoll').innerText = document.getElementById('inputRoll').value ? "Roll: " + document.getElementById('inputRoll').value : "Roll: 10";
-            document.getElementById('coverSubject').innerText = document.getElementById('inputSubject').value.toUpperCase() || "MATHEMATICS";
-            document.getElementById('coverSchool').innerText = document.getElementById('inputSchool').value.toUpperCase() || "JALALIYYA SCHOOL";
-        }
-
-        // ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുമ്പോൾ കവറിൽ വരാൻ
-        function loadPhoto(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('avatar');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
-</body>
-</html>
+<!-- Footer Advertisement (Company Name) -->
+<footer class="company-footer">
+    <p>Powered & Designed by <span class="company-name">Marhaba Typing & Document Clearing</span></p>
+</footer>
