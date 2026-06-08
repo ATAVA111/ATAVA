@@ -1,166 +1,93 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.main-container {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
-p { color: #666; margin-top: 0; font-size: 14px; }
-
-.form-container { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-.input-group { display: flex; flex-direction: column; text-align: left; gap: 5px; }
-.input-group label { font-weight: 600; color: #444; font-size: 14px; }
-.input-group input, .input-group textarea { padding: 10px; border: 1px solid #ccc; border-radius: 6px; outline: none; font-family: inherit; }
-
-.print-btn {
-    background-color: #5d6bca;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-/* 📄 A4 പേജ് ക്രമീകരണം (വെബ് സ്ക്രീനിൽ കാണാൻ) */
-.preview-area {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
+/* 📄 A4 പേജ് ക്രമീകരണം (ഒരു ഗ്രിഡ് ആയി മാറ്റുന്നു) */
 .a4-page {
     background: white;
     width: 210mm;
-    min-height: 297mm;
-    padding: 20mm;
+    height: 297mm;
+    padding: 10mm; /* മാർജിൻ അല്പം കുറച്ചു */
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* സ്ലിപ്പുകൾ തമ്മിലുള്ള അകലം */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 കോളങ്ങൾ */
+    grid-template-rows: repeat(4, 1fr);    /* 4 വരികൾ */
+    gap: 8mm; /* സ്ലിപ്പുകൾ തമ്മിലുള്ള കൃത്യമായ അകലം */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-radius: 8px;
+    page-break-after: always;
 }
 
-/* 🖼️ കവർ ഡിസൈൻ */
+/* 💳 കവർ ഡിസൈൻ (ATM കാർഡ് സൈസ്: 85mm x 54mm റേഷ്യോയിൽ) */
 .book-cover {
     width: 100%;
-    height: 115mm; /* A4-ൽ കൃത്യമായി ഒതുങ്ങാൻ ക്രമീകരിച്ചത് */
+    height: 62mm; /* 2x4 ഗ്രിഡിൽ കൃത്യമായി വരാൻ ക്രമീകരിച്ചത് */
     background-size: cover;
     background-position: center;
-    border-radius: 12px;
+    border-radius: 8px; /* ബോർഡർ റേഡിയസ് കുറച്ചു */
     overflow: hidden;
     position: relative;
+    border: 1px solid #ddd; /* പ്രിന്റ് ചെയ്യുമ്പോൾ കട്ടിങ് ലൈൻ മനസ്സിലാവാൻ */
 }
 
+/* സ്ലിപ്പ് ചെറുതാവുമ്പോൾ ഉള്ളിലെ പാഡിങ് കുറയ്ക്കുന്നു */
 .cover-overlay {
-    background: rgba(27, 16, 41, 0.75);
+    background: rgba(27, 16, 41, 0.78);
     width: 100%;
     height: 100%;
-    padding: 30px;
+    padding: 10px 15px; /* പാഡിങ് കുറച്ചു */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
+/* മുകൾഭാഗം: ഫോട്ടോയും വിവരങ്ങളും ചെറുതാക്കുന്നു */
 .photo-box img {
-    width: 75px;
-    height: 75px;
+    width: 40px;  /* ഫോട്ടോ ചെറുതാക്കി */
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid white;
-}
-
-.student-info {
-    text-align: right;
-    color: white;
+    border: 1.5px solid white;
 }
 
 .student-info h2 {
     margin: 0;
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 13px; /* അക്ഷരങ്ങൾ ചെറുതാക്കി */
+    font-weight: 700;
 }
 
 .student-info p {
-    margin: 3px 0 0 0;
+    margin: 1px 0 0 0;
     color: #e0e0e0;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 600;
 }
 
-.subject-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-}
-
+/* നടുഭാഗം: സബ്‌ജക്റ്റ് ടെക്സ്റ്റ് ചെറുതാക്കുന്നു */
 .sub-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    gap: 8px;
 }
 
 .sub-title .icon {
-    font-size: 32px;
-    color: #ffffff;
-    opacity: 0.8;
+    font-size: 18px; /* ഐക്കൺ ചെറുതാക്കി */
 }
 
 .sub-title h3 {
     margin: 0;
     color: white;
-    font-size: 38px;
+    font-size: 18px; /* സബ്‌ജക്റ്റ് പേര് കാർഡിന് അനുയോജ്യമാക്കി */
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
-.footer-section {
-    text-align: center;
-    color: white;
-}
-
+/* താഴെഭാഗം: സ്കൂൾ പേര് */
 .line {
-    border: 0;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.2);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .footer-section h4 {
-    margin: 0;
-    font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: #dfdfdf;
+    font-size: 10px; /* സ്കൂളിന്റെ പേര് ചെറുതാക്കി */
+    letter-spacing: 0.5px;
 }
 
-/* 🖨️ പ്രിന്റ് ചെയ്യുമ്പോൾ ഉള്ള കൃത്യമായ സെറ്റിംഗ്സ് */
+/* 🖨️ പ്രിന്റ് സെറ്റിംഗ്സ് */
 @media print {
     body { background: white; padding: 0; }
     .no-print { display: none !important; }
@@ -169,15 +96,10 @@ p { color: #666; margin-top: 0; font-size: 14px; }
     .a4-page {
         width: 210mm;
         height: 297mm;
-        padding: 15mm;
+        padding: 10mm;
         box-shadow: none;
         border-radius: 0;
-        page-break-after: always; /* 2 സ്ലിപ്പ് കഴിയുമ്പോൾ ഓട്ടോമാറ്റിക് അടുത്ത പേജ് */
-        box-sizing: border-box;
-    }
-
-    .book-cover {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        display: grid !important; /* പ്രിന്റിലും ഗ്രിഡ് ലേഔട്ട് നിലനിർത്താൻ */
+        page-break-after: always;
     }
 }
