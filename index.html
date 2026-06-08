@@ -72,7 +72,8 @@
 
             let currentPage;
             
-            // ഒരു A4 പേജിൽ പരമാവധി 2 സ്ലിപ്പുകൾ (800x420px വലിപ്പമുള്ളതിനാൽ)
+            // ഒരു A4 പേജിൽ പരമാവധി 2 സ്ലിപ്പുകൾ (// ഇതിന് മുൻപ് 2 ആയിരുന്നു, അത് മാറ്റി 8 ആക്കുക:
+const slipsPerPage = 8;)
             const slipsPerPage = 2; 
 
             subjects.forEach((subject, index) => {
