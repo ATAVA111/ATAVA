@@ -27,7 +27,7 @@
             margin-bottom: 25px;
         }
 
-        /* 🎯 ലോഗോ റൗണ്ട് ആക്കാനും ഭംഗിയാക്കാനുമുള്ള സ്റ്റൈൽ */
+        /* 🎯 ലോഗോ റൗണ്ട് ആക്കാനും വൃത്തിയാക്കാനുമുള്ള സ്റ്റൈൽ */
         .company-logo-container {
             margin-bottom: 10px;
             display: flex;
@@ -36,12 +36,13 @@
         }
 
         .company-logo {
-            width: 85px; 
-            height: 85px;
+            width: 90px; 
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #d4af37; /* ഗോൾഡ് ബോർഡർ */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 3px solid #d4af37; /* പ്രീമിയം ഗോൾഡ് ബോർഡർ */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background-color: #1a1a1a; /* ലോഗോയുടെ ഡാർക്ക് തീമിന് ചേരുന്ന ബാക്ക്ഗ്രൗണ്ട് */
         }
 
         h1 { color: #333; font-size: 24px; margin-bottom: 5px; margin-top: 10px; }
@@ -243,9 +244,8 @@
 <body>
 
     <div class="main-container no-print">
-        <!-- 🎯 നിങ്ങളുടെ അപ്‌ലോഡ് ചെയ്ത ലൈവ് ലോഗോ ലിങ്ക് ഇവിടെ ചേർത്തു -->
         <div class="company-logo-container">
-            <img class="company-logo" src="https://atava-digital.github.io/NAMESLIP/LOGO%202.jpg" alt="ATAVA Logo">
+            <img class="company-logo" src="https://atava-digital.github.io/NAMESLIP/logo%202.jpg" alt="ATAVA Logo" onerror="this.src='logo%202.jpg'">
         </div>
 
         <h1>📚 Book Cover Generator</h1>
