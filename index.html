@@ -262,10 +262,10 @@
         let customBgList = ["https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1000&auto=format&fit=crop"];
 
         function updateCovers() {
-            const name = document.getElementById('inputName').value || "MUHAMMED ZIYAD KV";
+            const name = document.getElementById('inputName').value || "TYPE NAME";
             const className = document.getElementById('inputClass').value ? "Class: " + document.getElementById('inputClass').value : "Class: 4 A";
             const roll = document.getElementById('inputRoll').value ? "Roll: " + document.getElementById('inputRoll').value : "Roll: 10";
-            const school = document.getElementById('inputSchool').value.toUpperCase() || "JALALIYYA SCHOOL";
+            const school = document.getElementById('inputSchool').value.toUpperCase() || "SCHOOL NAME";
             
             const subjectsText = document.getElementById('inputSubjects').value;
             let subjects = subjectsText.split('\n').filter(sub => sub.trim() !== "");
