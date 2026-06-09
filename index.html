@@ -27,7 +27,24 @@
             margin-bottom: 25px;
         }
 
-        h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
+        /* 🎯 ലോഗോ റൗണ്ട് ആക്കാനും ഭംഗിയാക്കാനുമുള്ള സ്റ്റൈൽ */
+        .company-logo-container {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .company-logo {
+            width: 85px; 
+            height: 85px;
+            border-radius: 50%; /* ലോഗോ പൂർണ്ണമായും റൗണ്ട് ആക്കാൻ */
+            object-fit: cover;
+            border: 3px solid #d4af37; /* ലോഗോയ്ക്ക് ചേരുന്ന ഒരു ഗോൾഡ് ബോർഡർ */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { color: #333; font-size: 24px; margin-bottom: 5px; margin-top: 10px; }
         p { color: #666; margin-top: 0; font-size: 14px; }
 
         .form-container { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
@@ -115,7 +132,7 @@
             font-size: 13px; 
             font-weight: 700;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-            min-height: 15px; /* പേര് ടൈപ്പ് ചെയ്യാത്തപ്പോൾ സ്പേസ് നിലനിർത്താൻ */
+            min-height: 15px;
         }
 
         .student-info p {
@@ -226,6 +243,11 @@
 <body>
 
     <div class="main-container no-print">
+        <!-- 🎯 നിങ്ങളുടെ ATAVA ലോഗോ റൗണ്ടിൽ സ്ഥിരമായി ഇവിടെ കാണാം -->
+        <div class="company-logo-container">
+            <img class="company-logo" src="LOGO 2.jpg" alt="ATAVA Logo">
+        </div>
+
         <h1>📚 Book Cover Generator</h1>
         <p>വിവരങ്ങൾ നൽകി പ്രൊഫഷണൽ കവർ പേജ് ഉണ്ടാക്കൂ!</p>
         
@@ -273,7 +295,6 @@
         let customBgList = ["https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1000&auto=format&fit=crop"];
 
         function updateCovers() {
-            // ജാവാസ്ക്രിപ്റ്റിൽ ഉണ്ടായിരുന്ന ഡിഫോൾട്ട് പേരും ക്ലാസും ബ്ലാങ്ക് ആക്കി മാറ്റി
             const name = document.getElementById('inputName').value || "";
             const className = document.getElementById('inputClass').value ? "Class: " + document.getElementById('inputClass').value : "";
             const roll = document.getElementById('inputRoll').value ? "Roll: " + document.getElementById('inputRoll').value : "";
@@ -301,7 +322,6 @@
 
                 const currentBg = customBgList[index % customBgList.length];
 
-                // ക്ലാസും റോളും ടൈപ്പ് ചെയ്താൽ മാത്രം ആ വരി കാണിക്കാൻ ചെറിയൊരു കണ്ടീഷൻ
                 let infoLine = "";
                 if (className || roll) {
                     infoLine = `${className} ${className && roll ? '|' : ''} ${roll}`;
