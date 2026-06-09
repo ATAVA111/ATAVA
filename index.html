@@ -115,6 +115,7 @@
             font-size: 13px; 
             font-weight: 700;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            min-height: 15px; /* പേര് ടൈപ്പ് ചെയ്യാത്തപ്പോൾ സ്പേസ് നിലനിർത്താൻ */
         }
 
         .student-info p {
@@ -170,7 +171,6 @@
             color: #dfdfdf;
         }
 
-        /* ⚡ ATAVA ബ്രാൻഡ് നെയിം സ്റ്റൈൽ ഇവിടെ ചേർത്തു */
         .brand-name {
             font-size: 8px; 
             color: rgba(255, 255, 255, 0.4); 
@@ -241,15 +241,15 @@
             </div>
             <div class="input-group">
                 <label>Student Name:</label>
-                <input type="text" id="inputName" placeholder="MUHAMMED ZIYAD KV" oninput="updateCovers()">
+                <input type="text" id="inputName" placeholder="Enter Student Name" oninput="updateCovers()">
             </div>
             <div class="input-group">
                 <label>Class:</label>
-                <input type="text" id="inputClass" placeholder="Class: 4 A" oninput="updateCovers()">
+                <input type="text" id="inputClass" placeholder="e.g., 4 A" oninput="updateCovers()">
             </div>
             <div class="input-group">
                 <label>Roll No:</label>
-                <input type="text" id="inputRoll" placeholder="Roll: 10" oninput="updateCovers()">
+                <input type="text" id="inputRoll" placeholder="e.g., 10" oninput="updateCovers()">
             </div>
             <div class="input-group">
                 <label>Subjects (One per line):</label>
@@ -257,7 +257,7 @@
             </div>
             <div class="input-group">
                 <label>School:</label>
-                <input type="text" id="inputSchool" placeholder="JALALIYYA SCHOOL" oninput="updateCovers()">
+                <input type="text" id="inputSchool" placeholder="Enter School Name" oninput="updateCovers()">
             </div>
             
             <button class="print-btn" onclick="window.print()">🖨️ Download / Print Cover</button>
@@ -273,10 +273,11 @@
         let customBgList = ["https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1000&auto=format&fit=crop"];
 
         function updateCovers() {
-            const name = document.getElementById('inputName').value || "MUHAMMED ZIYAD KV";
-            const className = document.getElementById('inputClass').value ? "Class: " + document.getElementById('inputClass').value : "Class: 4 A";
-            const roll = document.getElementById('inputRoll').value ? "Roll: " + document.getElementById('inputRoll').value : "Roll: 10";
-            const school = document.getElementById('inputSchool').value.toUpperCase() || "JALALIYYA SCHOOL";
+            // ജാവാസ്ക്രിപ്റ്റിൽ ഉണ്ടായിരുന്ന ഡിഫോൾട്ട് പേരും ക്ലാസും ബ്ലാങ്ക് ആക്കി മാറ്റി
+            const name = document.getElementById('inputName').value || "";
+            const className = document.getElementById('inputClass').value ? "Class: " + document.getElementById('inputClass').value : "";
+            const roll = document.getElementById('inputRoll').value ? "Roll: " + document.getElementById('inputRoll').value : "";
+            const school = document.getElementById('inputSchool').value.toUpperCase() || "";
             
             const subjectsText = document.getElementById('inputSubjects').value;
             let subjects = subjectsText.split('\n').filter(sub => sub.trim() !== "");
@@ -300,7 +301,12 @@
 
                 const currentBg = customBgList[index % customBgList.length];
 
-                /* ⚡ ദാ, താഴെ കാണുന്ന ഭാഗത്താണ് ATAVA ബ്രാൻഡ് നെയിം ഓട്ടോമാറ്റിക് ആയി വരാൻ സെറ്റ് ചെയ്തിട്ടുള്ളത് */
+                // ക്ലാസും റോളും ടൈപ്പ് ചെയ്താൽ മാത്രം ആ വരി കാണിക്കാൻ ചെറിയൊരു കണ്ടീഷൻ
+                let infoLine = "";
+                if (className || roll) {
+                    infoLine = `${className} ${className && roll ? '|' : ''} ${roll}`;
+                }
+
                 const slipHtml = `
                     <div class="book-cover" style="background-image: url('${currentBg}');">
                         <div class="cover-overlay">
@@ -310,7 +316,7 @@
                                 </div>
                                 <div class="student-info">
                                     <h2>${name}</h2>
-                                    <p><span>${className}</span> | <span>${roll}</span></p>
+                                    <p>${infoLine}</p>
                                 </div>
                             </div>
                             <div class="subject-section">
