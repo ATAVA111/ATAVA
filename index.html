@@ -26,6 +26,7 @@
             margin-bottom: 25px;
         }
 
+        /* 🎯 Site thurakkumbol mukalil kaanan ulla Company Logo Container */
         .company-logo-container {
             margin-bottom: 15px;
             display: flex;
@@ -112,22 +113,21 @@
             align-items: center;
         }
 
-        .logo-box img {
-            width: 42px;  
-            height: 42px;
-            border-radius: 50%;
+        /* 📸 Nameslip-il kuttiyude photo said-il krithyamayi varanulla puthiya style */
+        .student-photo-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            border: 2px solid white;
             object-fit: cover;
-            background: #1a1a1a;
-            border: 1.5px solid #d4af37;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        .student-photo-box {
-            width: 45px;
-            height: 45px;
-            border-radius: 4px;
-            border: 1.5px solid white;
-            object-fit: cover;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        /* Kuttiyude photo illenkil space blank aayi kidakkan */
+        .photo-placeholder {
+            width: 50px;
+            height: 50px;
         }
 
         .student-info {
@@ -137,15 +137,15 @@
 
         .student-info h2 {
             margin: 0;
-            font-size: 13px; 
+            font-size: 14px; 
             font-weight: bold;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
         }
 
         .student-info p {
-            margin: 1px 0 0 0;
+            margin: 2px 0 0 0;
             color: #e0e0e0;
-            font-size: 10px;
+            font-size: 11px;
         }
 
         .subject-section {
@@ -206,19 +206,19 @@
         </div>
 
         <h1>📚 Book Cover Generator</h1>
-        <p>വിവരങ്ങൾ നൽകി പ്രൊഫഷണൽ കവർ പേജ് ഉണ്ടാക്കൂ!</p>
+        <p>Information nalki professional cover page undakku!</p>
         
         <div class="form-container">
             <div class="input-group" style="background: #eef1ff; padding: 10px; border-radius: 8px; border: 1px dashed #5d6bca;">
                 <label style="color: #4a55a2;">👦 Upload Student Photo:</label>
                 <input type="file" id="inputPhoto" accept="image/*" onchange="loadStudentPhoto(event)">
-                <span class="hint-text" style="color: #666;">കുട്ടിയുടെ ഫോട്ടോ ഇവിടെ അപ്‌ലോഡ് ചെയ്യാം.</span>
+                <span class="hint-text" style="color: #666;">Kuttiyude photo ivide upload cheyyam.</span>
             </div>
 
             <div class="input-group">
                 <label>Custom Backgrounds (Select Multiple):</label>
                 <input type="file" id="inputBg" accept="image/*" multiple onchange="loadMultipleBackgrounds(event)">
-                <span class="hint-text">💡 Ctrl/Shift അമർത്തിപ്പിടിച്ച് ഒന്നിലധികം ചിത്രങ്ങൾ ഒരുമിച്ച് തിരഞ്ഞെടുക്കാം.</span>
+                <span class="hint-text">💡 Ctrl/Shift amarthingane onniladhikam chithrangal orumich thiranjedukkam.</span>
             </div>
             
             <div class="input-group">
@@ -227,7 +227,7 @@
             </div>
             <div class="input-group">
                 <label>Class:</label>
-                <input type="text" id="inputClass" placeholder="e.g., 4 A" oninput="updateCovers()">
+                <input type="text" id="inputClass" placeholder="e.g., 2 A" oninput="updateCovers()">
             </div>
             <div class="input-group">
                 <label>Roll No:</label>
@@ -251,8 +251,6 @@
     </div>
 
     <script>
-        // കൃത്യമായ ലോഗോ ഫയൽ നെയിം സെറ്റ് ചെയ്തു
-        const globalLogoData = "LOGO 2.jpg.jpg";
         let studentPhotoData = null;
         let customBgList = ["https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1000&auto=format&fit=crop"];
 
@@ -305,7 +303,8 @@
                     infoLine = `${className} ${className && roll ? '|' : ''} ${roll}`;
                 }
 
-                let photoHtml = "";
+                // 📸 Nameslip said-il kuttiyude photo mathram varanulla reethi
+                let photoHtml = '<div class="photo-placeholder"></div>';
                 if (studentPhotoData) {
                     photoHtml = `<img src="${studentPhotoData}" class="student-photo-box" alt="Student">`;
                 }
@@ -314,9 +313,6 @@
                     <div class="book-cover" style="background-image: url('${currentBg}');">
                         <div class="cover-overlay">
                             <div class="top-section">
-                                <div class="logo-box">
-                                    <img src="${globalLogoData}" alt="Logo">
-                                </div>
                                 ${photoHtml}
                                 <div class="student-info">
                                     <h2>${name}</h2>
@@ -328,6 +324,7 @@
                                     <h3>${subject.toUpperCase()}</h3>
                                 </div>
                             </div>
+                            <div class="preview-container"></div>
                             <div class="footer-section">
                                 <hr class="line">
                                 <h4>${school}</h4>
